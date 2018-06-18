@@ -3,15 +3,28 @@ import {Ingredient} from "../ingredient";
 
 @Injectable()
 export class ShoppingListService {
-private ingredient: Ingredient[]=[];
+private ingredients: Ingredient[]=[];
 
 getItems(){
-  return this.ingredient;
+  return this.ingredients;
 }
   constructor() { }
 
   addItems(items: Ingredient[]){
-  Array.prototype.push.apply(this.ingredient,items);
+  Array.prototype.push.apply(this.ingredients,items);
   }
+
+  additem(item:Ingredient){
+    this.ingredients.push(item);
+  }
+
+  editItem(oldItem:Ingredient,newItem:Ingredient){
+    this.ingredients[this.ingredients.indexOf(oldItem)]=newItem;
+  }
+
+  deleteItem(item:Ingredient){
+    this.ingredients.splice(this.ingredients.indexOf(item),1);
+  }
+
 
 }
